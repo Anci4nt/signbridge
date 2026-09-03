@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-200 font-sans antialiased;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(50rem 50rem at 80% -10%, rgba(34, 211, 238, 0.08), transparent 60%),
+      radial-gradient(40rem 40rem at -10% 20%, rgba(59, 130, 246, 0.08), transparent 55%);
+    background-attachment: fixed;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-white;
+  }
+
+  ::selection {
+    @apply bg-brand-400/30 text-white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-slate-900/80 border border-white/10 rounded-2xl shadow-[0_12px_30px_rgba(2,6,23,0.65)];
+  }
+
+  .glass-soft {
+    @apply bg-slate-800/60 border border-white/10 rounded-2xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-400 text-slate-950 hover:bg-brand-300 px-5 py-3;
+  }
+
+  .btn-ghost {
+    @apply btn bg-white/5 text-slate-100 hover:bg-white/10 border border-white/10 px-5 py-3;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger-500 text-white hover:bg-danger-500 px-4 py-2.5;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium border border-white/10 bg-white/5 text-slate-200;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-display font-semibold text-white tracking-tight;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-300 via-brand-400 to-accent-400 bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

@@ -1,0 +1,28 @@
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+training/.python-packages
+# Local Python environments contain TensorFlow/OpenCV binaries and must never
+# be committed. The environment remains available locally after this ignore.
+.venv/
+**/.venv/
+dist
+dist-ssr
+*.local
+
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
