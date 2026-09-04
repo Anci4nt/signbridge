@@ -128,7 +128,7 @@ export const SIGN_META: Record<SignLabel, SignMeta> = {
   EMERGENCY: {
     label: 'EMERGENCY',
     name: 'Emergency',
-    description: 'Both hands form an "X" shape and tap together — an urgent alert.',
+    description: 'A fist almost open.',
     difficulty: 'Advanced',
   },
   BAD: { label: 'BAD', name: 'Bad', description: 'A custom trained sign.', difficulty: 'Beginner' },

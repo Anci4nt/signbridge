@@ -22,10 +22,7 @@ export default function Footer() {
           </nav>
         </div>
         <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <p>Prototype tool for learning and accessibility.</p>
-          <p className="flex items-center gap-1.5">
-            Built with <Heart className="w-3.5 h-3.5 text-red-400" aria-hidden /> for accessibility
-          </p>
+          <p></p>
         </div>
       </div>
     </footer>
