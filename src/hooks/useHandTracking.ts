@@ -19,11 +19,6 @@ export interface UseHandTracking {
   ensureLoaded: () => Promise<void>;
 }
 
-/**
- * Loads the MediaPipe Hand Landmarker once and exposes a synchronous
- * `detect` call that runs on a single video frame. All processing is
- * local — no frames leave the browser.
- */
 export function useHandTracking(): UseHandTracking {
   const [state, setState] = useState<TrackerState>('idle');
   const [error, setError] = useState<string | null>(null);
@@ -48,9 +43,6 @@ export function useHandTracking(): UseHandTracking {
             delegate: 'GPU',
           },
           runningMode: 'VIDEO',
-          // Track both hands for the overlay and for two-handed signs. The
-          // classifier can still choose the strongest individual hand when it
-          // is using a single-hand (63 feature) model.
           numHands: MAX_HANDS,
           minHandDetectionConfidence: 0.65,
           minHandPresenceConfidence: 0.6,

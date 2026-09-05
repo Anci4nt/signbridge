@@ -11,11 +11,6 @@ export interface UseCamera {
   stream: MediaStream | null;
 }
 
-/**
- * Owns the webcam lifecycle. The video element is rendered by the caller
- * and bound to `videoRef`. Frames are not uploaded anywhere — the stream
- * stays in the browser for local processing.
- */
 export function useCamera(): UseCamera {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<CameraState>('idle');

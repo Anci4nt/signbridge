@@ -14,7 +14,6 @@ export function smoothPredictions(
 
   let best: SignLabel = 'NONE';
   let bestCount = -1;
-  // Iterate in reverse so ties resolve to the most recent label.
   for (let i = window.length - 1; i >= 0; i--) {
     const l = window[i];
     const c = counts.get(l)!;

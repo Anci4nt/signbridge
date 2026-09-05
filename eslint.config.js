@@ -19,8 +19,6 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      // eslint 9.39 changed the base rule's options shape; the installed
-      // TypeScript wrapper still expects the older shape.
       '@typescript-eslint/no-unused-expressions': 'off',
       'no-unused-expressions': 'error',
       'react-refresh/only-export-components': [

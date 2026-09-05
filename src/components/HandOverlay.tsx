@@ -3,25 +3,18 @@ import type { HandLandmarks } from '@/types/sign';
 
 interface HandOverlayProps {
   hands: HandLandmarks[] | null;
-  /** Mirror the canvas horizontally to match the mirrored video preview. */
   mirror?: boolean;
 }
 
-// MediaPipe hand connections (pairs of landmark indices).
 const HAND_CONNECTIONS: [number, number][] = [
-  [0, 1], [1, 2], [2, 3], [3, 4], // thumb
-  [0, 5], [5, 6], [6, 7], [7, 8], // index
-  [5, 9], [9, 10], [10, 11], [11, 12], // middle
-  [9, 13], [13, 14], [14, 15], [15, 16], // ring
-  [13, 17], [17, 18], [18, 19], [19, 20], // pinky
-  [0, 17], // palm base
+  [0, 1], [1, 2], [2, 3], [3, 4],
+  [0, 5], [5, 6], [6, 7], [7, 8],
+  [5, 9], [9, 10], [10, 11], [11, 12],
+  [9, 13], [13, 14], [14, 15], [15, 16],
+  [13, 17], [17, 18], [18, 19], [19, 20],
+  [0, 17],
 ];
 
-/**
- * Draws the 21-landmark hand skeleton over the webcam feed.
- * The canvas is sized to match its parent and re-renders every frame
- * via the `hands` prop.
- */
 export default function HandOverlay({ hands, mirror = true }: HandOverlayProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -48,7 +41,6 @@ export default function HandOverlay({ hands, mirror = true }: HandOverlayProps) 
         ctx.scale(-1, 1);
       }
 
-      // Connections
       ctx.strokeStyle = handIndex === 0
         ? 'rgba(34, 211, 238, 0.9)'
         : 'rgba(168, 85, 247, 0.9)';
@@ -64,7 +56,6 @@ export default function HandOverlay({ hands, mirror = true }: HandOverlayProps) 
         ctx.stroke();
       }
 
-      // Joints
       ctx.fillStyle = handIndex === 0
         ? 'rgba(52, 211, 153, 0.95)'
         : 'rgba(251, 191, 36, 0.95)';

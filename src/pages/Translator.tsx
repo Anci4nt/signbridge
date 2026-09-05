@@ -10,8 +10,8 @@ import type { HandLandmarks, HistoryEntry, SignLabel } from '@/types/sign';
 import { labelDisplayName } from '@/ml/labels';
 
 const CONFIRM_THRESHOLD = 0.8;
-const CONFIRM_FRAMES = 6; // consecutive stable non-NONE frames before logging
-const DEDUP_MS = 1500; // don't re-log the same sign within this window
+const CONFIRM_FRAMES = 6;
+const DEDUP_MS = 1500;
 
 export default function Translator() {
   const { videoRef, state: cameraState, error: cameraError, start, stop } = useCamera();
@@ -45,7 +45,6 @@ export default function Translator() {
     setHistory((h) => [entry, ...h].slice(0, 50));
   }, []);
 
-  // Main render loop.
   useEffect(() => {
     if (cameraState !== 'live') {
       setHands(null);
@@ -63,7 +62,6 @@ export default function Translator() {
         const now = performance.now();
         const detected = detect(video, now);
 
-        // FPS calc.
         const dt = now - lastFrameTime.current;
         lastFrameTime.current = now;
         const inst = 1000 / Math.max(1, dt);
@@ -133,7 +131,6 @@ export default function Translator() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Left: camera */}
         <div className="space-y-4">
           <CameraView
             videoRef={videoRef}
@@ -153,7 +150,6 @@ export default function Translator() {
           )}
         </div>
 
-        {/* Right: prediction + history */}
         <div className="space-y-4">
           <PredictionCard
             prediction={stable}

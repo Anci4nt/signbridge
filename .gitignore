@@ -8,8 +8,6 @@ lerna-debug.log*
 
 node_modules
 training/.python-packages
-# Local Python environments contain TensorFlow/OpenCV binaries and must never
-# be committed. The environment remains available locally after this ignore.
 .venv/
 **/.venv/
 dist

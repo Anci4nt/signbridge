@@ -146,9 +146,6 @@ export const SIGN_META: Record<SignLabel, SignMeta> = {
   YOU: { label: 'YOU', name: 'You', description: 'A custom trained sign.', difficulty: 'Beginner' },
 };
 
-// SCHOOL remains in the model's class order for compatibility with the trained
-// model, but it has no collected samples yet. Do not offer it as a practice
-// target until it has been collected, preprocessed, trained, and exported.
 export const PRACTICABLE_SIGNS = LABELS.filter(
   (label) => label !== 'NONE' && label !== 'SCHOOL',
 );

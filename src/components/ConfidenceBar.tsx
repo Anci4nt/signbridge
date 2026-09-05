@@ -1,5 +1,5 @@
 interface ConfidenceBarProps {
-  value: number; // 0..1
+  value: number;
   label?: string;
 }
 

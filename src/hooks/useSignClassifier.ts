@@ -17,19 +17,12 @@ const CONFIDENCE_THRESHOLD = 0.8;
 export interface UseSignClassifier {
   status: ClassifierStatus;
   error: string | null;
-  /** Latest raw per-frame prediction (un-smoothed). */
   raw: PredictionResult | null;
-  /** Smoothed, stable prediction shown to the user. */
   stable: PredictionResult | null;
-  /** Process one frame of landmarks. Returns the smoothed prediction. */
   processFrame: (hands: HandLandmarks[] | null) => Promise<PredictionResult | null>;
   reset: () => void;
 }
 
-/**
- * Orchestrates the full pipeline: feature extraction → inference →
- * temporal smoothing. Loads the trained TF.js model on mount.
- */
 export function useSignClassifier(): UseSignClassifier {
   const [status, setStatus] = useState<ClassifierStatus>('idle');
   const [error, setError] = useState<string | null>(null);
@@ -67,9 +60,6 @@ export function useSignClassifier(): UseSignClassifier {
       if (!model) return null;
 
       const bestHand = selectClassificationHand(hands);
-      // When two hands are visible, retain the selected side while it stays
-      // visible. This prevents the classifier stream from alternating hands
-      // because MediaPipe's confidence scores vary slightly frame to frame.
       const hand = preferredHandRef.current
         ? hands?.find((candidate) => candidate.handedness === preferredHandRef.current) ?? bestHand
         : bestHand;
@@ -78,7 +68,6 @@ export function useSignClassifier(): UseSignClassifier {
 
       let result: PredictionResult;
       if (!hand) {
-        // No hand → force NONE without wasting an inference pass.
         result = {
           label: 'NONE',
           confidence: 1,
@@ -90,7 +79,6 @@ export function useSignClassifier(): UseSignClassifier {
 
       setRaw(result);
 
-      // Rolling window smoothing.
       windowRef.current.push(result.label);
       if (windowRef.current.length > WINDOW_SIZE) {
         windowRef.current.shift();

@@ -1,9 +1,3 @@
-/**
- * Thin wrapper around the browser Web Speech API (SpeechSynthesis).
- * All methods are no-ops when the API is unavailable so callers never
- * need to guard individually.
- */
-
 let cachedVoice: SpeechSynthesisVoice | null = null;
 
 export function isSpeechAvailable(): boolean {
@@ -15,7 +9,6 @@ function pickVoice(): SpeechSynthesisVoice | null {
   if (cachedVoice) return cachedVoice;
   const voices = window.speechSynthesis.getVoices();
   if (voices.length === 0) return null;
-  // Prefer a natural English voice.
   cachedVoice =
     voices.find((v) => /en[-_]US/i.test(v.lang) && /natural|google|samantha/i.test(v.name)) ??
     voices.find((v) => /^en/i.test(v.lang)) ??
@@ -24,7 +17,6 @@ function pickVoice(): SpeechSynthesisVoice | null {
 }
 
 if (isSpeechAvailable()) {
-  // Voices load asynchronously in some browsers.
   window.speechSynthesis.onvoiceschanged = () => {
     cachedVoice = null;
     pickVoice();

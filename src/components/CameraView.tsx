@@ -32,7 +32,6 @@ export default function CameraView({
 
   return (
     <div className="glass overflow-hidden">
-      {/* Status bar */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
         <div className="flex items-center gap-2">
           <span
@@ -73,7 +72,6 @@ export default function CameraView({
         </div>
       </div>
 
-      {/* Video stage */}
       <div className="relative aspect-video w-full bg-ink-950">
         <video
           ref={videoRef}
@@ -119,7 +117,6 @@ export default function CameraView({
         )}
       </div>
 
-      {/* Controls */}
       <div className="flex items-center gap-3 p-4">
         {!live ? (
           <button onClick={onStart} className="btn-primary flex-1" aria-label="Start camera">

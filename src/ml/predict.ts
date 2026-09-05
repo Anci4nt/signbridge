@@ -2,13 +2,6 @@ import * as tf from '@tensorflow/tfjs';
 import type { PredictionResult, SignLabel } from '@/types/sign';
 import { LABELS } from './labels';
 
-/**
- * Run inference on a normalized 63-length feature vector and return
- * the top class plus the full probability distribution.
- *
- * `threshold` is the minimum confidence required for a non-NONE sign
- * to be reported. Predictions below the threshold are returned as NONE.
- */
 export async function predict(
   model: tf.LayersModel,
   features: number[],
@@ -22,11 +15,6 @@ export async function predict(
   return resolvePrediction(probs, threshold);
 }
 
-/**
- * Pure helper used by tests and the demo path. Selects the argmax
- * class and, if it is below threshold (and not already NONE), maps
- * the result to NONE.
- */
 export function resolvePrediction(
   probabilities: number[],
   threshold = 0.8,

@@ -133,7 +133,6 @@ export default function Learn() {
               <span className="chip mt-3 text-slate-300">{meta.difficulty}</span>
             </div>
 
-            {/* Live prediction */}
             <div className="glass p-5">
               <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-3">
                 Your Prediction
@@ -152,7 +151,6 @@ export default function Learn() {
               )}
             </div>
 
-            {/* Feedback */}
             {feedback.kind === 'correct' && (
               <div className="glass p-6 border-accent-400/40 animate-fade-up">
                 <div className="flex items-center gap-3 mb-2">
@@ -191,7 +189,6 @@ export default function Learn() {
     );
   }
 
-  // Sign selection grid
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-12">
       <div className="mb-8">

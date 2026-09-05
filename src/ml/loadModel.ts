@@ -9,11 +9,6 @@ export interface LoadedModel {
   status: ClassifierStatus;
 }
 
-/**
- * Load the trained TensorFlow.js model bundled with the application.
- * Loading errors are surfaced to the UI; this application never substitutes
- * an untrained model for real recognition.
- */
 export async function loadModel(): Promise<LoadedModel> {
   const model = await tf.loadLayersModel(MODEL_URL);
   const outputShape = model.outputs[0]?.shape;
